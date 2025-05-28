@@ -1,3 +1,28 @@
+/*
+
+const fs = require('fs');
+const fileName = 'DB.txt';
+
+function appendToFile(text) {
+  fs.appendFile(fileName, text, (err) => {
+    if (err) {
+      console.log('Could not append — maybe file does not exist. Trying to create file...');
+      
+      fs.writeFile(fileName, text, (err) => {
+        if (err) {
+          console.error('Failed to create and write the file:', err);
+          return;
+        }
+        console.log('File created and text written successfully.');
+      });
+
+    } else {
+      console.log('Appended successfully.');
+    }
+  });
+}
+*/
+
 function login() {
   const name = document.getElementById("username").value;
   
@@ -14,8 +39,8 @@ function login() {
 function sendMessage() {
   const message = document.getElementById("message").value;
   const name = localStorage.getItem("username");
-  
   if (message.trim() !== "") {
+    appendToFile(name + " " + message);
     const messageElement = document.createElement("div");
     messageElement.textContent = `${name}: ${message}`;
     document.getElementById("messages").appendChild(messageElement);
